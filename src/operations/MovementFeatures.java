@@ -45,7 +45,7 @@ public class MovementFeatures extends DataSetOperation {
         File output = new File(root + project + "/data/movementFeatures.csv");
 
         if (project.indexOf("_") != project.lastIndexOf("_")) {
-            if (project.substring(project.indexOf("_") + 1, project.lastIndexOf("_")).equalsIgnoreCase("HR")) {
+            if ((project.substring(project.indexOf("_") + 1, project.lastIndexOf("_")).equalsIgnoreCase("HR")) && (PXPERMM == 70)) {
                 PXPERMM *= 2;
             }
         }
