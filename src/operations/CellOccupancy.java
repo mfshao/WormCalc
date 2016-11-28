@@ -24,7 +24,8 @@ public class CellOccupancy extends DataSetOperation {
     final static double SCREEN_HEIGHT = 400;
     final static double MIN_TIME = 0;//40.0 * 60.0;
     final static double MAX_TIME = Double.MAX_VALUE;//40.0 * 60.0;
-    final static double TIME_BIN = 1.0 * 60.0;
+//    final static double TIME_BIN = 1.0 * 60.0;
+    final static double TIME_BIN = 1.0;
     //final static double OCC_MAX = 1000.0;
     final static double COLOR_RANGE = 0.7;
     final static boolean visualize = true;
@@ -123,20 +124,21 @@ public class CellOccupancy extends DataSetOperation {
             occupancy[mx][my] += e.timeDelta;
             visited[mx][my] = true;
             if (e.time > currentTime + TIME_BIN) {
-                currentTime = e.time;
-                int visitCount = 0;
-                for (boolean[] a : visited) {
-                    for (boolean b : a) {
-                        if (b) {
-                            visitCount++;
-                        }
+            currentTime = e.time;
+            int visitCount = 0;
+            for (boolean[] a : visited) {
+                for (boolean b : a) {
+                    if (b) {
+                        visitCount++;
                     }
                 }
-                if (visitCount > max) {
-                    max = visitCount;
-                }
-                visited = new boolean[binLength][binLength];
-                occOut.println((int) currentTime + "," + visitCount);
+            }
+            if (visitCount > max) {
+                max = visitCount;
+            }
+            visited = new boolean[binLength][binLength];
+//                occOut.println((int) currentTime + "," + visitCount);
+            occOut.println((int) currentTime + "," + mx + "," + my);
             }
         }
         occOut.close();
